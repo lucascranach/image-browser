@@ -3,8 +3,8 @@ const config = {
   'templateDirItem': document.querySelector('#dirTemplate').innerHTML,
   'targetDirs': document.querySelector('#dirs'),
   'templateImage': document.querySelector('#imageTemplate').innerHTML,
-  'targetStage': document.querySelector('#stage'),
-  'targetStageId': 'stage',
+  'targetStage': document.querySelector('#stageContent'),
+  'targetStageId': 'stageContent',
   'templateSearchInfo': document.querySelector('#searchInfoTemplate').innerHTML,
   'targetSearchInfo': document.querySelector('#searchInfo'),
   'templateImageInfo': document.querySelector('#imageInfoTemplate').innerHTML,
@@ -162,10 +162,19 @@ class FileBrowser {
   
   initSearch() {
     const target = this.config.targetSearchField;
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has('artefact')) {
+      const path = params.get('artefact');
+      this.path = path;
+      target.value = path;
+    }
+
     target.addEventListener('keyup', (e) => {
       try{window.clearTimeout(this.timeoutId);}catch(e){}
       this.timeoutId = setTimeout(this.search.bind(this), 500);
     });
+
   }
 
   updateResults(data, size) {
@@ -340,6 +349,10 @@ class FileBrowser {
     });
 
     this.activeStageContentType = type;
+
+    
+    const metaSrc = src.replace(/\.dzi$/, "-origin.jpg");
+    this.getIPTC(metaSrc);
   }
 
   showJson(src) {

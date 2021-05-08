@@ -69,15 +69,24 @@
 
 #stage{
   height: 100vh;
+  position: relative;
 }
 
-#stage.stage--centered{
+#stageContent{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#stageContent.stage--centered{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#stage.stage--normal{
+#stageContent.stage--normal{
   padding: var(--xl) var(--l);
   position: relative;
 }
@@ -145,6 +154,7 @@
   background-color: transparent;
   border: none;
   color: var(--lightest);
+  width: 90%;
 }
 
 .search-field:focus {
@@ -160,6 +170,7 @@
   right: 0;
   background-color: rgba(0,0,0,0.7);
   padding: var(--l) var(--m);
+  z-index: 100;
 }
 
 .image-info__item{
