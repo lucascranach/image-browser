@@ -1,5 +1,5 @@
 const config = {
-  'baseurl': 'https://lucascranach.org/admin/browser.php',
+  'baseurl': 'https://lucascranach.org/intern/browser.php',
   'templateDirItem': document.querySelector('#dirTemplate').innerHTML,
   'targetDirs': document.querySelector('#dirs'),
   'templateImage': document.querySelector('#imageTemplate').innerHTML,
@@ -9,7 +9,7 @@ const config = {
   'targetSearchInfo': document.querySelector('#searchInfo'),
   'templateImageInfo': document.querySelector('#imageInfoTemplate').innerHTML,
   'targetImageInfo': document.querySelector('#imageInfo'),
-  'imageurl': 'https://lucascranach.org/imageserver-2021/',
+  'imageurl': 'https://lucascranach.org/imageserver-2022/',
   'targetSearch': document.querySelector('#search'),
   'targetSearchField': document.querySelector('#searchField'),
   'timeoutId': false,
@@ -23,7 +23,8 @@ const config = {
     'error': 'error',
     'position': 'location_on',
     'size': 'crop_16_9',
-    'iptc': 'list'
+    'iptc': 'list',
+    'download': 'file_download'
   },
   'stagemap': {
     'image': 'stage--centered',
@@ -256,7 +257,7 @@ class FileBrowser {
     }
 
     const iptcData = meta.iptc ? meta.iptc : '-';
-    displayData.push({ 'text': `IPTC: ${iptcData}`, 'type': 'iptc' });
+    displayData.push({ 'text': `IPTC: ${iptcData}`, 'type': 'iptc', 'state':'interactive' });
 
     for (var ele in displayData) {
       const item = displayData[ele];
@@ -296,8 +297,12 @@ class FileBrowser {
       displayData.push({ 'text': `${data.meta.images} Bild${plural} gefunden`, 'type': 'image' });
     }
     
-    if (this.path !== '') {  
-      displayData.push({ 'text': this.path, 'type': 'position', 'class': 'important' });
+    if (this.path !== '') {
+      displayData.push({ 'text': this.path, 'type': 'position', 'class': 'important' });      
+    }
+
+    if (data.meta.level === 1) {
+      displayData.push({ 'text': 'Download Folder', 'type': 'download', 'class': 'has-hover-hand', 'id':'download-folder'});
     }
 
     for (var ele in displayData) {
@@ -306,6 +311,13 @@ class FileBrowser {
       const output = Mustache.render(template, item);
       const outputDom = helper.convertToDomElement(output);
       target.append(...outputDom.children);
+    }
+
+    if (data.meta.level === 1) {
+      document.querySelector('#download-folder').addEventListener('click', e => {
+        const downloadUrl = `${this.config.baseurl}/?path=${data.path}&action=download`;
+        location.href = downloadUrl;
+      });
     }
   }
 

@@ -17,11 +17,11 @@
           </a>
 
           <form id="search" class="search">
-            <span class="material-icons">search</span><input id="searchField" type="text" class="search-field" placeholder="*">
+            <span class="material-icons">search</span><input id="searchField" type="text" class="form-field" placeholder="*">
           </form>
           <div id="searchInfo" class="search-info">
             <template id="searchInfoTemplate">
-              <li class="search-info__item {{class}}">
+              <li class="search-info__item {{class}}" id="{{id}}">
                 <span class="material-icons">{{icon}}</span>{{text}}</li>
             </template>
           </div>
@@ -38,13 +38,74 @@
         <template id="imageTemplate">
           <img src="{{src}}">
         </template>
-        <div id="stageContent">
-        </div>
-        <div id="imageInfo" class="image-info">
-          <template id="imageInfoTemplate">
-            <li class="image-info__item {{class}}">
-              <span class="material-icons">{{icon}}</span>{{text}}</li>
-          </template>
+        <div id="stageContent"></div>
+        <div class="image-info">
+          <div id="imageInfo">
+            <template id="imageInfoTemplate">
+              <li class="image-info__item {{class}}">
+                <span class="material-icons" data-state="{{state}}">{{icon}}</span>{{text}}</li>
+
+              <!--form class="form">
+                <div class="two-colums">
+                  <div class="german">
+                    <div class="form-field-wrap">
+                      <label for="title">Titel</label>
+                      <span class="form-field-info f95" data-maxlength="256"></span>
+                      <input class="form-field" maxlength="256" name="title" id="title" value="Martin Luther als Augustinermönch im Ordenshabit, Halbfigur nach rechts gewandt, im Strahlenkranz, mit Buch, Nimbus und Taube">
+                    </div>
+
+                    <div class="form-field-wrap">
+                      <label for="description">Dateiart / Beschreibung</label>
+                      <span class="form-field-info f5" data-maxlength="256"></span>
+                      <textarea class="form-field" maxlength="1024" name="description" id="description">Kreuzigung Christi, sog. "Schottenkreuzigung"</textarea>
+                    </div>
+
+                    <div class="form-field-wrap">
+                      <label for="rights">Autor / Rechte</label>
+                      <span class="form-field-info f0" data-maxlength="256"></span>
+                      <input class="form-field" maxlength="256" name="rights" id="rights">
+                    </div>
+
+                    <div class="form-field-wrap">
+                      <label for="source">Quelle</label>
+                      <span class="form-field-info f10" data-maxlength="256"></span>
+                      <input class="form-field" maxlength="256" name="source" id="source" value="Kunsthistorisches Museum, Wien; Gemälderestaurierung">
+                    </div>
+                  </div>
+                  <div class="english">
+                    <div class="form-field-wrap">
+                      <label for="title">Title</label>
+                      <span class="form-field-info f95" data-maxlength="256"></span>
+                      <input class="form-field" maxlength="256" name="title" id="title" value="Martin Luther als Augustinermönch im Ordenshabit, Halbfigur nach rechts gewandt, im Strahlenkranz, mit Buch, Nimbus und Taube">
+                    </div>
+
+                    <div class="form-field-wrap">
+                      <label for="description">Type / Description</label>
+                      <span class="form-field-info f10" data-maxlength="256"></span>
+                      <textarea class="form-field" maxlength="1024" name="description" id="description">The Crucifixion of Christ, the so-called Schottenkreuzigung</textarea>
+                    </div>
+
+                    <div class="form-field-wrap">
+                      <label for="rights">Author / Copyright</label>
+                      <span class="form-field-info f0" data-maxlength="256"></span>
+                      <input class="form-field" maxlength="256" name="rights" id="rights">
+                    </div>
+
+                    <div class="form-field-wrap">
+                      <label for="source">Source</label>
+                      <span class="form-field-info f20" data-maxlength="256"></span>
+                      <input class="form-field" maxlength="256" name="source" id="source" value="Kunsthistorisches Museum, Vienna; Paintings Conservation Department">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-field-wrap form-submit">
+                  <span class="material-icons">save</span>
+                  <input class="form-field" type="submit" value="speichern">
+                </div>
+              </form-->
+            </template>
+          </div>
         </div>
       </section>
     </main>
